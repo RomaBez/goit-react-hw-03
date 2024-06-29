@@ -1,6 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
 import { nanoid } from "nanoid";
 import { useId } from "react";
 
@@ -8,7 +7,7 @@ const ContactForm = ({ onAdd }) => {
   const nameId = useId();
   const numberId = useId();
 
-  const DataValid = Yup.object().shape({
+  const dataValid = Yup.object().shape({
     name: Yup.string("Must be a string!")
       .trim()
       .min(3, "Too short!")
@@ -21,20 +20,21 @@ const ContactForm = ({ onAdd }) => {
       .required("Required"),
   });
 
-  const handleSubmit = (values, action) => {
+  const handleSubmit = (values, actions) => {
     onAdd({
       ...values,
       id: nanoid(),
     });
-    action.resetForm();
+    actions.resetForm();
   };
+
   return (
     <Formik
       initialValues={{
         name: "",
         number: "",
       }}
-      DataValid={DataValid}
+      validationSchema={dataValid}
       onSubmit={handleSubmit}
     >
       <Form>
