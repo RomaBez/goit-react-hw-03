@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import "./App.module.css";
 import ContactList from "../ContactList/ContactList";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
+import css from "./App.module.css";
 
 function App() {
   const [contacts, setContacts] = useState(() => {
@@ -37,7 +37,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={css.container}>
       <h1>Phonebook</h1>
       <ContactForm onAdd={onAdd} />
       <SearchBox value={filter} onSearch={setFilter} />

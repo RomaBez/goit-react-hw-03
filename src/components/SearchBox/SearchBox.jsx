@@ -1,19 +1,21 @@
+import css from "./SearchBox.module.css";
+
 const SearchBox = ({ value, onSearch }) => {
   const handleCleaner = () => {
     onSearch("");
   };
   return (
-    <div>
+    <div className={css.container}>
       <label>Find contacts by name</label>
-      <div>
+      <div className={css.input}>
         <input
+          className={css.field}
           type="text"
           value={value}
           onChange={(evt) => {
             onSearch(evt.target.value);
           }}
         />
-        <button type="button" onClick={handleCleaner}></button>
       </div>
     </div>
   );
